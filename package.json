@@ -91,7 +91,9 @@
     "test": "npm run lint && npm run unit && npm run wdio && npm run wdio -- conf/firefox.js",
     "posttest": "docker-compose down -v",
     "preversion": "npm test",
-    "postversion": "git push --tags origin master && npm publish"
+    "postversion": "git push --tags origin master && npm publish",
+    "prepublish": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "files": [
     "css/jquery.fileupload-noscript.css",
@@ -112,5 +114,9 @@
     "js/jquery.fileupload.js",
     "js/jquery.iframe-transport.js"
   ],
-  "main": "js/jquery.fileupload.js"
+  "main": "js/jquery.fileupload.js",
+  "snyk": true,
+  "dependencies": {
+    "@snyk/protect": "latest"
+  }
 }
